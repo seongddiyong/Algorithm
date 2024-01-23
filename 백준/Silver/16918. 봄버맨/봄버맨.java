@@ -57,10 +57,9 @@ public class Main {
                 }
             }
         }
-
-
+        
         for (int i = 0; i < R; i++) {
-            System.out.println(map[i]);
+            System.out.println(String.valueOf(map[i]));
         }
 
     }
