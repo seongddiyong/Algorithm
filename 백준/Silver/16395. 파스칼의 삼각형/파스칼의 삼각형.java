@@ -10,7 +10,7 @@ public class Main {
         int N = Integer.parseInt(st.nextToken());
         int K = Integer.parseInt(st.nextToken());
 
-        int [][] dp = new int[N+1][N+1];
+        int [][] dp = new int[N][N];
 
         for (int i = 0; i < N; i++) {
             for (int j = 0; j <= i; j++) {
@@ -19,12 +19,9 @@ public class Main {
                 } else {
                     dp[i][j] = dp[i-1][j-1] + dp[i-1][j];
                 }
-
-                if (i == N - 1 && j == K - 1) {
-                    System.out.println(dp[i][j]);
-                    return;
-                }
             }
         }
+
+        System.out.println(dp[N - 1][K - 1]);
     }
 }
