@@ -9,16 +9,7 @@ public class Main {
     static int [][] dp;
     static int [] dx = {0, 0, -1, 1};
     static int [] dy = {-1, 1, 0, 0};
-
-    static class Pos {
-        int x, y;
-
-        public Pos(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-    }
-
+    
     public static int dfs(int x, int y) {
         if (dp[y][x] != 0) return dp[y][x];
         dp[y][x] = 1;
