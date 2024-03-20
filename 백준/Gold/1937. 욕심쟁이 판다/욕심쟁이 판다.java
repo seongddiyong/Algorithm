@@ -10,14 +10,24 @@ public class Main {
     static int [] dx = {0, 0, -1, 1};
     static int [] dy = {-1, 1, 0, 0};
 
+    static class Pos {
+        int x, y;
+
+        public Pos(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+
     public static int dfs(int x, int y) {
         if (dp[y][x] != 0) return dp[y][x];
         dp[y][x] = 1;
         for (int i = 0; i < 4; i++) {
             int nx = x + dx[i];
             int ny = y + dy[i];
-            if (nx >= 0 && ny >= 0 && nx < N && ny < N && map[ny][nx] > map[y][x]) {
-                dp[y][x] = Math.max(dp[y][x], dfs(nx, ny) + 1);
+            if (nx >= 0 && ny >= 0 && nx < N && ny < N) {
+                if (map[ny][nx] > map[y][x])
+                    dp[y][x] = Math.max(dp[y][x], dfs(nx, ny) + 1);
             }
         }
         return dp[y][x];
