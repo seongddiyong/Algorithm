@@ -1,37 +1,45 @@
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.nio.Buffer;
+import java.util.Arrays;
+import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Main {
-
-    static int cnt = 0;
     static int N, X;
-    static int [] list;
-    static boolean [] visited;
+    static int [] arr;
+    public static int count() {
+        int result = 0;
+        int sum = 0;
+        int lt = 0;
+        int rt = N-1;
 
-    public static void combination(int depth, int start, int front) {
-        for (int i = start; i < N; i++) {
-            if (depth == 2) {
-                if (front + list[i] == X) {
-                    cnt++;
-                }
-                continue;
+        Arrays.sort(arr);
+
+        while(lt < rt) {
+            sum = arr[rt] + arr[lt];
+
+            if(sum == X) result++;
+
+            if(sum < X) {
+                lt++;
+            }else {
+                rt--;
             }
-            combination(2, i + 1, list[i]);
         }
+        return result;
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         N = Integer.parseInt(br.readLine());
+        arr = new int[N];
         StringTokenizer st = new StringTokenizer(br.readLine());
-        list = new int [N];
-        for (int i = 0; i < N; i++) {
-            list[i] = Integer.parseInt(st.nextToken());
+        for(int i=0; i<N; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
         }
         X = Integer.parseInt(br.readLine());
 
-        combination(1, 0, 0);
-        System.out.println(cnt);
+        System.out.println(count());
     }
-
 }
